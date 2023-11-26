@@ -7,11 +7,22 @@
     <link rel="stylesheet" type="text/css" href="/graphs/app/static/styles.css">
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet"> 
     <script src="https://d3js.org/d3.v7.min.js"></script>
-    <script src="./graphs/app/scripts/barras.js"></script>
+    <script src="/graphs/app/scripts/barras.js"></script>
+    <link rel="stylesheet" href="../static/styles.css">
 </head>
 <body>
     <h1>Gráfico de Barras de Dados da NBA</h1>
-    <div>
+  <div class="sidebar">
+    <ul>
+        <li><a href="index.html">Index</a></li>
+        <li><a href="barras.html">Barras</a></li>
+        <li><a href="dispersao.html">Dispersão</a></li>
+        <li><a href="rebotes_time.html">Rebotes</a></li>
+        <li><a href="idade_media.html">Idade</a></li>
+        <li><a href="bilhao.html">Bilhão</a></li>
+    </ul>
+  </div>
+    <div class="">
         <label for="dataColumn">Estatística:</label>
         <select id="dataColumn">
             <option value="Salary">Salário</option>

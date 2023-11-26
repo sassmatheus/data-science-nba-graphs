@@ -1,13 +1,15 @@
 .hover-label {
     font-family: Arial, sans-serif;
     font-size: 12px;
-    fill: black; /* Cor do texto */
+    fill: black;
     font-weight: bold;
 }
 
 body{
     text-align: center;
     font-family: "Poppins", sans-serif;
+    margin: 0;
+    overflow-y: hidden;
 }
 
 h1{
@@ -25,3 +27,60 @@ label{
 .numPages{
     margin-left: 15px;
 }
+
+
+.sidebar {
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    padding-top: 20px;
+    color: white;
+  }
+  
+  .sidebar a {
+    padding: 16px;
+    text-decoration: none;
+    font-size: 18px;
+    color: white;
+    display: block;
+  }
+  
+  .sidebar a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  
+  .content {
+    margin-left: 200px;
+    padding: 20px;
+  }
+  
+  .cards {
+    display: flex;
+  }
+  
+  .card {
+    flex: 1;
+    padding: 20px;
+    margin: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+  
+  #barChart {
+    margin-top: 20px;
+  }
+
+  .graficos{
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .legenda{
+    display: flex; justify-content: center; align-items: center; height: 0; margin: 0;
+  }
+  

@@ -1,28 +1,24 @@
-// Carregar dados do arquivo CSV
 d3.csv("/data/nba_dados.csv").then(function(data) {
 
-    // Agrupar os dados por time e calcular o total de rebotes para cada time
     var teamRebounds = d3.nest()
         .key(function(d) { return d.Team; })
         .rollup(function(v) { return d3.sum(v, function(d) { return +d.TRB; }); })
         .entries(data);
 
-    // Ordenar os dados pelo total de rebotes em ordem decrescente
     teamRebounds.sort(function(a, b) {
         return b.value - a.value;
     });
 
-    // Limitar a exibição aos 20 primeiros times
     var top20Teams = teamRebounds.slice(0, 20);
 
     // Tamanho do gráfico
     var margin = { top: 50, right: 20, bottom: 30, left: 120 };
-    var width = 800 - margin.left - margin.right;
-    var height = 500 - margin.top - margin.bottom;
+    var width = 1300 - margin.left - margin.right;
+    var height = 550 - margin.top - margin.bottom;
 
     // Escala para o eixo X (total de rebotes)
     var xScale = d3.scaleLinear()
-        .domain([0, 70]) // ajuste a escala para ir até 70
+        .domain([0, 65]) // ajuste a escala para ir até 65
         .range([0, width]);
 
     // Escala para o eixo Y (times)
@@ -52,7 +48,7 @@ d3.csv("/data/nba_dados.csv").then(function(data) {
             // Exibe o nome do time ao passar o mouse sobre a barra
             d3.select("#tooltip")
                 .style("opacity", 1)
-                .html("<strong>" + d.key + "</strong>")
+                .html("<strong>" + obterNomeCompletoDoTime(d.key) + "</strong><br>" + d.value.toFixed(1))
                 .style("left", (d3.event.pageX) + "px")
                 .style("top", (d3.event.pageY - 28) + "px");
         })
@@ -81,4 +77,54 @@ d3.csv("/data/nba_dados.csv").then(function(data) {
         .append("div")
         .attr("id", "tooltip")
         .style("opacity", 0);
+    
+    // Adiciona rótulos fixos ao lado esquerdo de cada barra
+    svg.selectAll(".team-label")
+    .data(top20Teams)
+    .enter().append("text")
+    .attr("class", "team-label")
+    .text(function(d) { return d.key; })
+    .attr("x", -margin.left + 80)  // Ajuste a posição conforme necessário
+    .attr("y", function(d) { return yScale(d.key) + yScale.bandwidth() / 2; })
+    .attr("dy", ".35em")
+    .attr("fill", "black");
+
+    
 });
+
+function obterNomeCompletoDoTime(sigla) {
+    var mapeamentoNomes = {
+        "ATL": "Atlanta Hawks",
+        "BOS": "Boston Celtics",
+        "BKN": "Brooklyn Nets",
+        "CHA": "Charlotte Hornets",
+        "CHI": "Chicago Bulls",
+        "CLE": "Cleveland Cavaliers",
+        "DAL": "Dallas Mavericks",
+        "DEN": "Denver Nuggets",
+        "DET": "Detroit Pistons",
+        "GSW": "Golden State Warriors",
+        "HOU": "Houston Rockets",
+        "IND": "Indiana Pacers",
+        "LAC": "LA Clippers",
+        "LAL": "Los Angeles Lakers",
+        "MEM": "Memphis Grizzlies",
+        "MIA": "Miami Heat",
+        "MIL": "Milwaukee Bucks",
+        "MIN": "Minnesota Timberwolves",
+        "NOP": "New Orleans Pelicans",
+        "NYK": "New York Knicks",
+        "OKC": "Oklahoma City Thunder",
+        "ORL": "Orlando Magic",
+        "PHI": "Philadelphia 76ers",
+        "PHX": "Phoenix Suns",
+        "POR": "Portland Trail Blazers",
+        "SAC": "Sacramento Kings",
+        "SAS": "San Antonio Spurs",
+        "TOR": "Toronto Raptors",
+        "UTA": "Utah Jazz",
+        "WAS": "Washington Wizards"
+        // Adicione mais mapeamentos conforme necessário
+    };
+    return mapeamentoNomes[sigla] || sigla; // Retorna o nome completo ou a sigla se não encontrado
+}

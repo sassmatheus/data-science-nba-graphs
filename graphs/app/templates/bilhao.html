@@ -1,16 +1,15 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gráfico de Dispersão</title>
-    <link rel="stylesheet" type="text/css" href="/graphs/app/static/styles.css">
+    <title>D3.js Salary Chart from CSV</title>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet">
-    <script src="https://d3js.org/d3.v5.min.js"></script>
-    <script src="/graphs/app/scripts/dispersao.js"></script>
     <link rel="stylesheet" href="../static/styles.css">
   </head>
   <body>
+    <h1>Concentração de salários: jogadores para somar 1 bilhão</h1>
     <div class="sidebar">
       <ul>
         <li><a href="index.html">Index</a></li>
@@ -21,11 +20,7 @@
         <li><a href="bilhao.html">Bilhão</a></li>
       </ul>
     </div>
-    
-    <div class="content">
-        <h1>Salário x Cestas por jogo</h1>
-        <div id="chart"></div>
-    </div>
-    
+
+<script src="../scripts/bilhao.js" ></script>
 </body>
 </html>

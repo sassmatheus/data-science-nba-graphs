@@ -1,7 +1,7 @@
 d3.csv("/data/nba_dados.csv").then(function(data) {
 
     var margin = { top: 20, right: 30, bottom: 60, left: 60 };
-    var width =  1300 - margin.left - margin.right;
+    var width =  1230 - margin.left - margin.right;
     var height = 600 - margin.top - margin.bottom;
 
     var svg = d3.select("#chart")

@@ -1,21 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NBA Gráficos</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seu Dashboard</title>
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../static/styles.css">
 </head>
 <body>
-    <h1>Escolha um Gráfico</h1>
+  <div class="sidebar">
     <ul>
-        <li><a href="barras.html">Gráfico de Barras de Dados da NBA</a></li>
-        <li><a href="dispersao.html">Gráfico de Dispersão - Salário x Cestas por jogo</a></li>
-        <li><a href="idade_media.html">Gráfico de Dispersão - Idade x Média de pontos</a></li>
-        <li><a href="media_posicao.html">Gráfico de barras - Posição x Média de pontos</a></li>
-        <li><a href="pontos_lanceLivre.html">Gráfico de pizza - TOP 10 - Percentual de Pontos a partir de Lances Livres por Jogador</a></li>
-        <li><a href="rebotes_time.html">Gráfico de barras - Top 20 - Total de Rebotes (TRB) por Time</a></li>
-
+      <li><a href="index.html">Index</a></li>
+      <li><a href="barras.html">Barras</a></li>
+      <li><a href="dispersao.html">Dispersão</a></li>
+      <li><a href="rebotes_time.html">Rebotes</a></li>
+      <li><a href="idade_media.html">Idade</a></li>
+      <li><a href="bilhao.html">Bilhão</a></li>
     </ul>
+  </div>
+
+  <div class="content">
+    <div class="cards">
+      <div class="card" id="cardPlayers"></div>
+      <div class="card" id="cardTotalSalaries"></div>
+      <div class="card" id="cardAverageSalary"></div>
+    </div>
+    <h2 style="margin-right: 45px; margin-bottom: 50px;">Principais Estatísticas por Posição</h2>
+    <div class="legenda" id="legendaGeral">
+      <svg width="600" height="50">
+
+        <!-- Armador -->
+        <rect x="10" y="10" width="30" height="30" fill="rgb(31, 119, 180)" />
+        <text x="45" y="25" fill="black" dominant-baseline="middle">Armador</text> 
+        <text x="25" y="30" fill="white" font-size="14" text-anchor="middle">PG</text>
+    
+        <!-- Ala-Armador -->
+        <rect x="130" y="10" width="30" height="30" fill="rgb(255, 127, 14)" />
+        <text x="165" y="25" fill="black" dominant-baseline="middle">Ala-Armador</text>
+        <text x="145" y="30" fill="white" font-size="14" text-anchor="middle">SG</text>
+    
+        <!-- Ala -->
+        <rect x="280" y="10" width="30" height="30" fill="rgb(44, 160, 44)" />
+        <text x="315" y="25" fill="black" dominant-baseline="middle">Ala</text>
+        <text x="295" y="30" fill="white" font-size="14" text-anchor="middle">SF</text>
+
+    
+        <!-- Ala-Pivô -->
+        <rect x="360" y="10" width="30" height="30" fill="rgb(214, 39, 40)" />
+        <text x="395" y="25" fill="black" dominant-baseline="middle">Ala-Pivô</text>
+        <text x="375" y="30" fill="white" font-size="14" text-anchor="middle">PF</text>
+    
+        <!-- Pivô -->
+        <rect x="470" y="10" width="30" height="30" fill="rgb(148, 103, 189)" />
+        <text x="505" y="25" fill="black" dominant-baseline="middle">Pivô</text>
+        <text x="485" y="30" fill="white" font-size="14" text-anchor="middle">C</text>
+    
+    </svg>
+    
+  </div>
+    <div class="graficos">
+      <div class="grafico-container" id="graficoPontos"></div>
+      <div class="grafico-container" id="graficoAssistencias"></div>
+      <div class="grafico-container" id="graficoRebotes"></div>
+    </div>
+    
+
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="../scripts/scripts.js"></script>
 </body>
 </html>

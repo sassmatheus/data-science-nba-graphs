@@ -5,12 +5,12 @@ d3.csv("/data/nba_dados.csv").then(function(data) {
     var selectedColumn = "Salary"; // Coluna inicial
 
     // SVG para o grafico
-    var margin = { top: 20, right: 180, bottom: 60, left: 120 };
-    var width = 1200 - margin.left - margin.right + 200;
+    var margin = { top: 20, right: 200, bottom: 60, left: 120 };
+    var width = 1100 - margin.left - margin.right + 220;
     var height = 600 - margin.top - margin.bottom;
     var svg = d3.select("#chart")
         .append("svg")
-        .attr("width", width + margin.left + margin.right)
+        .attr("width", width + margin.left + margin.right - 80)
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
@@ -23,24 +23,24 @@ d3.csv("/data/nba_dados.csv").then(function(data) {
     svg.append("g")
         .attr("class", "x-axis")
         .attr("transform", "translate(0," + height + ")")
-        .call(xAxis);
+        .call(xAxis)
+        
+        .style("font-size", "16px");
 
-    // Criando o gráfico com base na página e coluna selecionadas
     function createBarChart(page) {
-        // Classifique os dados com base na coluna selecionada em ordem decrescente
+        // classifica os dados com base na coluna selecionada em ordem decrescente
         data.sort(function(a, b) {
             return d3.descending(+a[selectedColumn], +b[selectedColumn]);
         });
 
-        // Calculando o índice inicial e final para os jogadores na página
         var startIndex = (page - 1) * numPlayersPerPage;
         var endIndex = startIndex + numPlayersPerPage;
         var playersOnPage = data.slice(startIndex, endIndex);
 
-        // Atualizando barras e labels
+        // atualiza barras e labels
         var bars = svg.selectAll(".player-bar").data(playersOnPage, function(d) { return d["Player Name"]; });
 
-        // Removendo as barras antigas
+        // remove as barras antigas
         bars.exit().remove();
 
         // Atualização das escalas de banda para o domínio específico da página
